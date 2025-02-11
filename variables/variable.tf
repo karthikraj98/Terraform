@@ -1,3 +1,9 @@
+# 1. command line [ terraform plan -var="instance_type=t3.large" ]
+# 2. terraform.tfvars [ terraform plan ]
+# 3. environment variables, TF_VAR_your_variable_name [ export TF_VAR_instance_type=t3.xlarge]
+# 4. default
+# 5. prompt
+
 variable "ami_id" {
     type =  string
     default = "ami-09c813fb71547fc4f"
@@ -7,7 +13,6 @@ variable "ami_id" {
 variable "instance_type" {
     type = string
     default = "t2.micro"
-
 }
 
 variable "tags"{
