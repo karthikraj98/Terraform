@@ -11,3 +11,11 @@ variable "common_tags"{
         Terraform = "true"
     }
 }
+
+variable "zone_id" {
+    defualt = 
+}
+
+variable "domain_name" {
+    defualt = 
+}
