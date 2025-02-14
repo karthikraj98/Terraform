@@ -12,10 +12,10 @@ variable "common_tags"{
     }
 }
 
-# variable "zone_id" {
-#     defualt = 
-# }
+variable "zone_id" {
+    default = "Z08329612LLVLHI8AGFPS"
+ }
 
-# variable "domain_name" {
-#     defualt = 
-# }
+variable "domain_name" {
+    default = "learningdevops.shop" 
+ }
