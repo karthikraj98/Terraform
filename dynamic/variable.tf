@@ -3,20 +3,23 @@ variable "ingress_rules" {
     {
         from_port = 22
         to_port = 22
-        protocal = tcp
-        cidr_blocks = [0.0.0.0/0]
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "opening 22"
     },
     {
-        from_port = 88
+        from_port = 80
         to_port = 80
-        protocal = tcp
-        cidr_blocks = [0.0.0.0/0]
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "opening 80"
     },
     {
         from_port = 8080
         to_port = 8080
-        protocal = tcp
-        cidr_blocks = [0.0.0.0/0]
-    },
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "opening 8080"
+    }
   ]
 }
