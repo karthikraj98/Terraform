@@ -1,15 +1,16 @@
-resource "aws_instance" "terraform" {
-
-  ami                    = "ami-09c813fb71547fc4f"
-  instance_type          = "t3.micro"
+resource "aws_instance" "expense" {
+  for_each = var.instances # this variable is map
+  # for_each will give us a special variable with name each
+  ami                    = "ami-09c813fb71547fc4f" # this AMI ID may change over the time
+  instance_type          = each.value
   vpc_security_group_ids = [aws_security_group.allow_ssh_terraform.id]
   tags = {
-    Name = "terraform"
+    Name = each.key
   }
 }
 
 resource "aws_security_group" "allow_ssh_terraform" {
-  name        = "allow_sshhhhhhh" #allow_ssh is already there in my account
+  name        = "allow_sshh" #allow_ssh is already there in my account
   description = "Allow port number 22 for SSH access"
 
   # usually we allow everything in egress
