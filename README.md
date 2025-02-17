@@ -71,6 +71,7 @@ resource "aws_instance" "terraform" {
 variable "ami_id" {
     default = "ami-09c813fb71547fc4f"
 }
+
 or
 
 resource "aws_instance" "terraform" {
