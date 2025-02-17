@@ -1,17 +1,16 @@
-resource "aws_instance" "expense" {
-    count = length(var.instance_names)
+resource "aws_instance" "terraform" {
+
     ami = "ami-09c813fb71547fc4f"
     instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.allow_ssh_terraform.id]
-    # tags = {
-    # Name = var.instance_names[count.index]
-    # }
-    tags = merge (
-        var.common_tags,
-        {
-            Name = var.instance_names[count.index]
-        }
-    )
+    tags = {
+    Name = "terraform"
+   }
+   # in this case my laptop is local
+   provisioners "local-exec" {
+    command = "echo ${self.public_ip_} > public_ip"
+   }
+    
 }
 
 resource "aws_security_group" "allow_ssh_terraform" {

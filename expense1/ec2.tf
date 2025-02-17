@@ -21,7 +21,7 @@ resource "aws_security_group" "allow_ssh_terraform" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  egress {
+  ingress {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
