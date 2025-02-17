@@ -10,7 +10,21 @@ resource "aws_instance" "terraform" {
   provisioner "local-exec" {
     command = "echo ${self.private_ip} > public_ip.txt"
   }
+   connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = self.public_ip
+  }
 
+   # provisioners will execute at the time of creation
+  provisioner "remote-exec" {
+    inline = [
+      "sudo dnf install ansible -y",
+      "sudo dnf install nginx -y",
+      "sudo systemctl start nginx",
+    ]
+  }
 }
 
 resource "aws_security_group" "allow_ssh_terraform" {
