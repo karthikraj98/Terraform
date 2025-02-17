@@ -5,12 +5,12 @@ resource "aws_instance" "terraform" {
     vpc_security_group_ids = [aws_security_group.allow_ssh_terraform.id]
     tags = {
     Name = "terraform"
-   }
-   # in this case my laptop is local
-   provisioners "local-exec" {
-    command = "echo ${self.public_ip_} > public_ip"
-   }
-    
+  }
+  # in this case my laptop is local
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} > public_ip.txt"
+  }
+
 }
 
 resource "aws_security_group" "allow_ssh_terraform" {
