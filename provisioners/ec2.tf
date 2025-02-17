@@ -25,6 +25,12 @@ resource "aws_instance" "terraform" {
       "sudo systemctl start nginx",
     ]
   }
+   provisioner "remote-exec" {
+        when    = destroy
+        inline = [
+            "sudo systemctl stop nginx",
+        ]
+    }
 }
 
 resource "aws_security_group" "allow_ssh_terraform" {
@@ -43,6 +49,14 @@ resource "aws_security_group" "allow_ssh_terraform" {
     ingress {
          from_port       = 22
         to_port          = 22
+        protocol         = "tcp"
+        cidr_blocks      = ["0.0.0.0/0"] #allow from everyone
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
+    ingress {
+         from_port       = 80
+        to_port          = 80
         protocol         = "tcp"
         cidr_blocks      = ["0.0.0.0/0"] #allow from everyone
         ipv6_cidr_blocks = ["::/0"]
